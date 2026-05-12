@@ -12,11 +12,15 @@ export class AuthorRepository {
   ) {}
 
   async findAuthors() {
-    return await this.mongodb.find();
+    const authors = await this.mongodb.find();
+    const activeAuthors = authors.filter((author: Author) => !author.isDeleted);
+    return activeAuthors;
   }
 
   async findAuthor(id: string) {
-    return await this.mongodb.findById(id);
+    const author: Author | null = await this.mongodb.findById(id);
+    if (author) return author.isDeleted ? null : author;
+    return null;
   }
 
   async createAuthor(dto: CreateAuthorDto) {

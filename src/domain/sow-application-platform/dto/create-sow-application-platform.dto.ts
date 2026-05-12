@@ -1,0 +1,33 @@
+import { Type } from 'class-transformer';
+import {
+  IsBoolean,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Length,
+} from 'class-validator';
+
+export class CreateSOWApplicationPlatformDto {
+  @IsNotEmpty()
+  @IsString()
+  @Length(24, 24)
+  statement_of_work_id!: string;
+
+  @IsOptional()
+  @IsString()
+  platform_name!: string;
+
+  @IsOptional()
+  @IsString()
+  description!: string;
+
+  @IsNotEmpty()
+  @Type(() => Number)
+  @IsInt()
+  list_index!: number;
+
+  @IsOptional()
+  @IsBoolean()
+  isDeleted!: boolean;
+}

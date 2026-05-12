@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { MinLength } from 'class-validator';
 import { Document } from 'mongoose';
 
 export type AuthorDocument = Author & Document;
@@ -7,16 +6,18 @@ export type AuthorDocument = Author & Document;
 @Schema({
   timestamps: true,
   versionKey: false,
+  collection: 'authors',
 })
 export class Author {
   @Prop({ required: true })
   name!: string;
 
   @Prop()
-  @MinLength(1)
   position!: string;
 
-  @Prop()
+  @Prop({
+    default: false,
+  })
   isDeleted!: boolean;
 }
 
