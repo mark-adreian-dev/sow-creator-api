@@ -10,6 +10,7 @@ import {
   StatementOfWork,
   StatementOfWorkDocument,
 } from '../schema/statement-of-work.schema';
+import { UpdateSOWTimelineDto } from '../../domain/sow-timeline/dto/update-sow-timeline.dto';
 
 @Injectable()
 export class SOWTimelineRepository {
@@ -24,14 +25,14 @@ export class SOWTimelineRepository {
   async findSOWTimelines() {
     const validators = await this.mongodb.find();
     const activeSOWTimeline = validators.filter(
-      (validator: SOWTimeline) => !validator.isDeleted,
+      (validator: SOWTimeline) => !validator.is_deleted,
     );
     return activeSOWTimeline;
   }
 
   async findSOWTimeline(id: string) {
     const validator: SOWTimeline | null = await this.mongodb.findById(id);
-    if (validator) return validator.isDeleted ? null : validator;
+    if (validator) return validator.is_deleted ? null : validator;
     return null;
   }
 
@@ -47,13 +48,18 @@ export class SOWTimelineRepository {
     return await this.mongodb.create(dto);
   }
 
-  async updateSOWTimeline(id: string, dto: Partial<CreateSOWTimelineDto>) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+  async updateSOWTimeline(id: string, dto: Partial<UpdateSOWTimelineDto>) {
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteSOWTimeline(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

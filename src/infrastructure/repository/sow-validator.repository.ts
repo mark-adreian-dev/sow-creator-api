@@ -33,7 +33,7 @@ export class SOWValidatorRepository {
 
   async deleteSOWValidator(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
+      is_deleted: true,
     });
   }
 }

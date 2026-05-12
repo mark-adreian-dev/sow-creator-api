@@ -44,5 +44,5 @@ export class CreateSOWFeatureDto {
 
   @IsOptional()
   @IsBoolean()
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }

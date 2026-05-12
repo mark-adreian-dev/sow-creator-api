@@ -29,5 +29,5 @@ export class CreateSOWApplicationPlatformDto {
 
   @IsOptional()
   @IsBoolean()
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }

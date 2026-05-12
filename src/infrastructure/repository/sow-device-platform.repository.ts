@@ -40,11 +40,11 @@ export class SOWDevicePlatformRepository {
   }
 
   async createSOWDevicePlatform(dto: CreateSOWDevicePlatformDto) {
-    const sowExist = this.statementOfWorkSchema.exists({
+    const sowExist = await this.statementOfWorkSchema.exists({
       _id: dto.statement_of_work_id,
     });
 
-    const devicePlaformExist = this.devicePlatformSchema.exists({
+    const devicePlaformExist = await this.devicePlatformSchema.exists({
       _id: dto.device_platform_id,
     });
 
@@ -59,12 +59,17 @@ export class SOWDevicePlatformRepository {
     id: string,
     dto: Partial<UpdateSOWDevicePlatformDto>,
   ) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteSOWDevicePlatform(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

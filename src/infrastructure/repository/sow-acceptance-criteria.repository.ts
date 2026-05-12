@@ -23,7 +23,7 @@ export class SOWAcceptanceCriteriaRepository {
   async findSOWAcceptanceCriterias() {
     const authors = await this.mongodb.find();
     const activeSOWAcceptanceCriterias = authors.filter(
-      (author: SOWAcceptanceCriteria) => !author.isDeleted,
+      (author: SOWAcceptanceCriteria) => !author.is_deleted,
     );
     return activeSOWAcceptanceCriterias;
   }
@@ -31,7 +31,7 @@ export class SOWAcceptanceCriteriaRepository {
   async findSOWAcceptanceCriteria(id: string) {
     const author: SOWAcceptanceCriteria | null =
       await this.mongodb.findById(id);
-    if (author) return author.isDeleted ? null : author;
+    if (author) return author.is_deleted ? null : author;
     return null;
   }
 
@@ -54,7 +54,7 @@ export class SOWAcceptanceCriteriaRepository {
 
   async deleteSOWAcceptanceCriteria(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
+      is_deleted: true,
     });
   }
 }

@@ -23,7 +23,7 @@ export class SOWAcceptanceCriteria {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWAcceptanceCriteriaSchema = SchemaFactory.createForClass(

@@ -27,7 +27,7 @@ export class SOWApplicationPlatformRepository {
   async findSOWApplicationPlatforms() {
     const authors = await this.mongodb.find();
     const activeSOWApplicationPlatforms = authors.filter(
-      (author: SOWApplicationPlatform) => !author.isDeleted,
+      (author: SOWApplicationPlatform) => !author.is_deleted,
     );
     return activeSOWApplicationPlatforms;
   }
@@ -35,7 +35,7 @@ export class SOWApplicationPlatformRepository {
   async findSOWApplicationPlatform(id: string) {
     const author: SOWApplicationPlatform | null =
       await this.mongodb.findById(id);
-    if (author) return author.isDeleted ? null : author;
+    if (author) return author.is_deleted ? null : author;
     return null;
   }
 
@@ -59,7 +59,7 @@ export class SOWApplicationPlatformRepository {
 
   async deleteSOWApplicationPlatform(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
+      is_deleted: true,
     });
   }
 }

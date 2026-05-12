@@ -22,14 +22,14 @@ export class SOWFeatureRepository {
   async findSOWFeatures() {
     const authors = await this.mongodb.find();
     const activeSOWFeatures = authors.filter(
-      (author: SOWFeature) => !author.isDeleted,
+      (author: SOWFeature) => !author.is_deleted,
     );
     return activeSOWFeatures;
   }
 
   async findSOWFeature(id: string) {
     const author: SOWFeature | null = await this.mongodb.findById(id);
-    if (author) return author.isDeleted ? null : author;
+    if (author) return author.is_deleted ? null : author;
     return null;
   }
 
@@ -51,7 +51,7 @@ export class SOWFeatureRepository {
 
   async deleteSOWFeature(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
+      is_deleted: true,
     });
   }
 }

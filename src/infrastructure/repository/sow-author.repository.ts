@@ -53,7 +53,7 @@ export class SOWAuthorRepository {
 
   async deleteSOWAuthor(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
+      is_deleted: true,
     });
   }
 }

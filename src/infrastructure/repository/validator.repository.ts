@@ -14,14 +14,14 @@ export class ValidatorRepository {
   async findValidators() {
     const validators = await this.mongodb.find();
     const activeValidators = validators.filter(
-      (validator: Validator) => !validator.isDeleted,
+      (validator: Validator) => !validator.is_deleted,
     );
     return activeValidators;
   }
 
   async findValidator(id: string) {
     const validator: Validator | null = await this.mongodb.findById(id);
-    if (validator) return validator.isDeleted ? null : validator;
+    if (validator) return validator.is_deleted ? null : validator;
     return null;
   }
 
@@ -39,7 +39,7 @@ export class ValidatorRepository {
   async deleteValidator(id: string) {
     return await this.mongodb.findByIdAndUpdate(
       id,
-      { isDeleted: true },
+      { is_deleted: true },
       { new: true },
     );
   }

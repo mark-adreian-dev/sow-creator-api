@@ -18,7 +18,7 @@ export class Author {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const AuthorSchema = SchemaFactory.createForClass(Author);

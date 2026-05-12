@@ -28,7 +28,7 @@ export class SOWApplicationPlatform {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWApplicationPlatformSchema = SchemaFactory.createForClass(

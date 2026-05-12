@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Patch,
+  Delete,
   Post,
   ValidationPipe,
 } from '@nestjs/common';
@@ -42,7 +43,7 @@ export class SOWDevicePlatformController {
     return this.service.update(id, updateSOWDevicePlatformDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWDevicePlatform(@Param('id') id: string) {
     return this.service.remove(id);
   }
