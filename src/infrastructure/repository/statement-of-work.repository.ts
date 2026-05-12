@@ -38,12 +38,17 @@ export class StatementOfWorkRepository {
     id: string,
     dto: Partial<CreateStatementOfWorkDto>,
   ) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteStatementOfWork(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      { new: true },
+    );
   }
 }
