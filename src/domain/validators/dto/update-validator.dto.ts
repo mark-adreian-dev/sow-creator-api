@@ -1,4 +1,8 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateValidatorDto } from './create-validator.dto';
+import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-export class UpdateValidatorDto extends PartialType(CreateValidatorDto) {}
+export class UpdateValidatorDto {
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(4)
+  position!: string;
+}
