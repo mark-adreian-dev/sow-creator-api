@@ -9,7 +9,9 @@ describe('StatementOfWorkController', () => {
       controllers: [StatementOfWorkController],
     }).compile();
 
-    controller = module.get<StatementOfWorkController>(StatementOfWorkController);
+    controller = module.get<StatementOfWorkController>(
+      StatementOfWorkController,
+    );
   });
 
   it('should be defined', () => {

@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Author, AuthorDocument } from '../schema/author.schema';
 import { CreateAuthorDto } from '../../domain/authors/dto/create-author.dto';
+import { UpdateAuthorDto } from '../../domain/authors/dto/update-author.dto';
 
 @Injectable()
 export class AuthorRepository {
@@ -27,13 +28,18 @@ export class AuthorRepository {
     return await this.mongodb.create(dto);
   }
 
-  async updateAuthor(id: string, dto: Partial<CreateAuthorDto>) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+  async updateAuthor(id: string, dto: UpdateAuthorDto) {
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteAuthor(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      { new: true },
+    );
   }
 }
