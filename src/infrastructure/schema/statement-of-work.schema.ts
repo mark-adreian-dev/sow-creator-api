@@ -40,7 +40,7 @@ export class StatementOfWork {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const StatementOfWorkSchema =

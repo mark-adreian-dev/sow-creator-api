@@ -14,13 +14,15 @@ export class AuthorRepository {
 
   async findAuthors() {
     const authors = await this.mongodb.find();
-    const activeAuthors = authors.filter((author: Author) => !author.isDeleted);
+    const activeAuthors = authors.filter(
+      (author: Author) => !author.is_deleted,
+    );
     return activeAuthors;
   }
 
   async findAuthor(id: string) {
     const author: Author | null = await this.mongodb.findById(id);
-    if (author) return author.isDeleted ? null : author;
+    if (author) return author.is_deleted ? null : author;
     return null;
   }
 
@@ -38,7 +40,7 @@ export class AuthorRepository {
   async deleteAuthor(id: string) {
     return await this.mongodb.findByIdAndUpdate(
       id,
-      { isDeleted: true },
+      { is_deleted: true },
       { new: true },
     );
   }

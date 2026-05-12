@@ -19,7 +19,7 @@ export class Validator {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const ValidatorSchema = SchemaFactory.createForClass(Validator);

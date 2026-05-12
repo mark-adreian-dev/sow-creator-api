@@ -26,14 +26,14 @@ export class SOWObjectiveRepository {
   async findSOWObjectives() {
     const authors = await this.mongodb.find();
     const activeSOWObjectives = authors.filter(
-      (author: SOWObjective) => !author.isDeleted,
+      (author: SOWObjective) => !author.is_deleted,
     );
     return activeSOWObjectives;
   }
 
   async findSOWObjective(id: string) {
     const author: SOWObjective | null = await this.mongodb.findById(id);
-    if (author) return author.isDeleted ? null : author;
+    if (author) return author.is_deleted ? null : author;
     return null;
   }
 
@@ -54,7 +54,7 @@ export class SOWObjectiveRepository {
 
   async deleteSOWObjective(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
+      is_deleted: true,
     });
   }
 }

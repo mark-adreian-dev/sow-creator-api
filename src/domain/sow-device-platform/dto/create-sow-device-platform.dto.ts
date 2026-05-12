@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateSOWDevicePlatformDto {
   @IsNotEmpty()
@@ -10,8 +10,4 @@ export class CreateSOWDevicePlatformDto {
   @IsString()
   @Length(24, 24)
   device_platform_id!: string;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  is_available!: boolean;
 }

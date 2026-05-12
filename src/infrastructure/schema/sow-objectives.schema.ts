@@ -21,7 +21,7 @@ export class SOWObjective {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWObjectiveSchema = SchemaFactory.createForClass(SOWObjective);

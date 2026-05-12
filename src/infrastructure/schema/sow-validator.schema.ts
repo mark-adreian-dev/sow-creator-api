@@ -19,7 +19,7 @@ export class SOWValidator {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWValidatorSchema = SchemaFactory.createForClass(SOWValidator);
