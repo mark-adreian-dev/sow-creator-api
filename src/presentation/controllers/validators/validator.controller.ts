@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -40,7 +41,7 @@ export class ValidatorController {
     return this.service.update(id, updateValidatorDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteValidator(@Param('id') id: string) {
     return this.service.remove(id);
   }
