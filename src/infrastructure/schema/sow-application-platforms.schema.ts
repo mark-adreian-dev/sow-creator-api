@@ -22,7 +22,9 @@ export class SOWApplicationPlatform {
   })
   description!: string;
 
-  @Prop()
+  @Prop({
+    default: -1,
+  })
   list_index!: number;
 
   @Prop({

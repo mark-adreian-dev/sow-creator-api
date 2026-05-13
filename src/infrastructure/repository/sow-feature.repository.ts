@@ -36,7 +36,7 @@ export class SOWFeatureRepository {
   async createSOWFeature(dto: CreateSOWFeatureDto) {
     const sowApplcationPlatformExists =
       await this.sowApplicationPlatformSchema.exists({
-        _id: dto.platform_id,
+        _id: dto.app_platform_id,
       });
 
     if (!sowApplcationPlatformExists)
@@ -46,12 +46,17 @@ export class SOWFeatureRepository {
   }
 
   async updateSOWFeature(id: string, dto: UpdateSOWFeatureDto) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteSOWFeature(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      is_deleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -42,7 +43,7 @@ export class SOWFeatureController {
     return this.service.update(id, updateSOWFeatureDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWFeature(@Param('id') id: string) {
     return this.service.remove(id);
   }

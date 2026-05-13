@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -42,7 +43,7 @@ export class SOWApplicationPlatformController {
     return this.service.update(id, updateSOWApplicationPlatformDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWApplicationPlatform(@Param('id') id: string) {
     return this.service.remove(id);
   }
