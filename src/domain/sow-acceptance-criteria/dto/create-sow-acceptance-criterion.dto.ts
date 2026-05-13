@@ -25,5 +25,5 @@ export class CreateSOWAcceptanceCriteriaDto {
 
   @IsOptional()
   @IsBoolean()
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }

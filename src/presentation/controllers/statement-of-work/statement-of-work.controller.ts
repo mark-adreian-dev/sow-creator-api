@@ -43,7 +43,7 @@ export class StatementOfWorkController {
     return this.service.update(id, updateStatementOfWorkDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteStatementOfWork(@Param('id') id: string) {
     return this.service.remove(id);
   }

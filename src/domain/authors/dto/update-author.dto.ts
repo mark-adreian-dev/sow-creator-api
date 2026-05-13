@@ -1,4 +1,9 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateAuthorDto } from './create-author.dto';
+import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-export class UpdateAuthorDto extends PartialType(CreateAuthorDto) {}
+export class UpdateAuthorDto {
+  @MinLength(4)
+  @IsString()
+  @MinLength(1)
+  @IsNotEmpty()
+  position!: string;
+}

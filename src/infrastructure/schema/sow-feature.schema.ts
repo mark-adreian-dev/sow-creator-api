@@ -39,7 +39,7 @@ export class SOWFeature {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWFeatureSchema = SchemaFactory.createForClass(SOWFeature);

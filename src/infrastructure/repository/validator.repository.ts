@@ -14,14 +14,14 @@ export class ValidatorRepository {
   async findValidators() {
     const validators = await this.mongodb.find();
     const activeValidators = validators.filter(
-      (validator: Validator) => !validator.isDeleted,
+      (validator: Validator) => !validator.is_deleted,
     );
     return activeValidators;
   }
 
   async findValidator(id: string) {
     const validator: Validator | null = await this.mongodb.findById(id);
-    if (validator) return validator.isDeleted ? null : validator;
+    if (validator) return validator.is_deleted ? null : validator;
     return null;
   }
 
@@ -30,12 +30,17 @@ export class ValidatorRepository {
   }
 
   async updateValidator(id: string, dto: Partial<CreateValidatorDto>) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteValidator(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

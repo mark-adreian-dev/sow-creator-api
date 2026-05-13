@@ -97,7 +97,7 @@ export class SOWTimeline {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWTimelineSchema = SchemaFactory.createForClass(SOWTimeline);

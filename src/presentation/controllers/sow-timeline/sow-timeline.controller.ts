@@ -42,7 +42,7 @@ export class SOWTimelineController {
     return this.service.update(id, updateSOWTimelineDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWTimeline(@Param('id') id: string) {
     return this.service.remove(id);
   }

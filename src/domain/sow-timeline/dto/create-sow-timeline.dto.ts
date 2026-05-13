@@ -1,4 +1,3 @@
-import { Prop } from '@nestjs/mongoose';
 import { Type } from 'class-transformer';
 import {
   IsDateString,
@@ -6,9 +5,6 @@ import {
   IsOptional,
   IsString,
   Length,
-  MaxLength,
-  MinLength,
-  minLength,
   ValidateNested,
 } from 'class-validator';
 
@@ -60,12 +56,12 @@ export class CreateSOWTimelineDto {
   @IsOptional()
   @ValidateNested()
   @Type(() => DevelopmentDto)
-  development?: DevelopmentDto;
+  development_timeline?: DevelopmentDto;
 
   @IsOptional()
   @ValidateNested()
   @Type(() => TestingDto)
-  testing?: TestingDto;
+  testing_timeline?: TestingDto;
 
   @IsOptional()
   @ValidateNested()

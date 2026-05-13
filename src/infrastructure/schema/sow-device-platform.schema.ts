@@ -17,6 +17,9 @@ export class SOWDevicePlatform {
 
   @Prop({ default: false })
   is_available!: boolean;
+
+  @Prop({ default: false })
+  is_deleted!: boolean;
 }
 
 export const SOWDevicePlatformSchema =

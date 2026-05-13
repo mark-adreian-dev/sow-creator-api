@@ -17,14 +17,14 @@ export class DevicePlatformRepository {
   async findDevicePlatforms() {
     const devicePlatforms = await this.mongodb.find();
     const activeDevicePlatforms = devicePlatforms.filter(
-      (validator: DevicePlatform) => !validator.isDeleted,
+      (validator: DevicePlatform) => !validator.is_deleted,
     );
     return activeDevicePlatforms;
   }
 
   async findDevicePlatform(id: string) {
     const validator: DevicePlatform | null = await this.mongodb.findById(id);
-    if (validator) return validator.isDeleted ? null : validator;
+    if (validator) return validator.is_deleted ? null : validator;
     return null;
   }
 
@@ -36,12 +36,17 @@ export class DevicePlatformRepository {
     id: string,
     dto: Partial<CreateDevicePlatformDto>,
   ) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteDevicePlatform(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

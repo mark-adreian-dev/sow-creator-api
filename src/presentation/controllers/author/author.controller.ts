@@ -1,11 +1,11 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Patch,
   Post,
+  Delete,
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateAuthorDto } from '../../../domain/authors/dto/create-author.dto';
@@ -32,14 +32,11 @@ export class AuthorController {
   }
 
   @Patch(':id')
-  updateAuthor(
-    @Param('id') id: string,
-    @Body(new ValidationPipe()) updateAuthorDto: UpdateAuthorDto,
-  ) {
-    return this.service.update(id, updateAuthorDto);
+  updateAuthor(@Param('id') id: string, @Body() dto: UpdateAuthorDto) {
+    return this.service.update(id, dto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteAuthor(@Param('id') id: string) {
     return this.service.remove(id);
   }

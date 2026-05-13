@@ -17,7 +17,7 @@ export class StatementOfWorkRepository {
   async findStatementOfWorks() {
     const statementOfWorks = await this.mongodb.find();
     const activeStatementOfWorks = statementOfWorks.filter(
-      (statementOfWork: StatementOfWork) => !statementOfWork.isDeleted,
+      (statementOfWork: StatementOfWork) => !statementOfWork.is_deleted,
     );
     return activeStatementOfWorks;
   }
@@ -26,7 +26,7 @@ export class StatementOfWorkRepository {
     const statementOfWork: StatementOfWork | null =
       await this.mongodb.findById(id);
     if (statementOfWork)
-      return statementOfWork.isDeleted ? null : statementOfWork;
+      return statementOfWork.is_deleted ? null : statementOfWork;
     return null;
   }
 
@@ -38,12 +38,17 @@ export class StatementOfWorkRepository {
     id: string,
     dto: Partial<CreateStatementOfWorkDto>,
   ) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteStatementOfWork(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      isDeleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

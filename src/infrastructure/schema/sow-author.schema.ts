@@ -22,7 +22,7 @@ export class SOWAuthor {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const SOWAuthorSchema = SchemaFactory.createForClass(SOWAuthor);

@@ -43,7 +43,7 @@ export class DevicePlatformController {
     return this.service.update(id, updateDevicePlatformDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteDevicePlatform(@Param('id') id: string) {
     return this.service.remove(id);
   }

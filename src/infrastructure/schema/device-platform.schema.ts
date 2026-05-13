@@ -21,7 +21,7 @@ export class DevicePlatform {
   @Prop({
     default: false,
   })
-  isDeleted!: boolean;
+  is_deleted!: boolean;
 }
 
 export const DevicePlatformSchema =
