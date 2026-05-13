@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -40,7 +41,7 @@ export class SOWValidatorController {
     return this.service.update(id, updateSOWValidatorDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWValidator(@Param('id') id: string) {
     return this.service.remove(id);
   }

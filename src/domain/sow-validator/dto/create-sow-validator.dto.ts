@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsString, Length, MinLength } from 'class-validator';
 
 export class CreateSOWValidatorDto {
   @IsNotEmpty()
@@ -10,4 +10,9 @@ export class CreateSOWValidatorDto {
   @IsString()
   @Length(24, 24)
   validator_id!: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(1)
+  current_position!: string;
 }

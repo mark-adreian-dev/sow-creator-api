@@ -15,7 +15,9 @@ export class SOWObjective {
   @Prop({ required: true })
   detail!: string;
 
-  @Prop()
+  @Prop({
+    default: -1,
+  })
   list_index!: number;
 
   @Prop({

@@ -19,9 +19,4 @@ export class CreateSOWObjectiveDto {
   @IsString()
   @MinLength(5)
   detail!: string;
-
-  @IsNotEmpty()
-  @Type(() => Number)
-  @IsInt()
-  list_index!: number;
 }
