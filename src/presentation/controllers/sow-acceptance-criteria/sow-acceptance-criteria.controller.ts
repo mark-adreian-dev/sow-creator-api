@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -42,7 +43,7 @@ export class SOWAcceptanceCriteriaController {
     return this.service.update(id, updateSOWAcceptanceCriteriaDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWAcceptanceCriteria(@Param('id') id: string) {
     return this.service.remove(id);
   }

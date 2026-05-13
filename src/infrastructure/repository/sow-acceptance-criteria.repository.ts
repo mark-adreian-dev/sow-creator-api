@@ -49,12 +49,17 @@ export class SOWAcceptanceCriteriaRepository {
     id: string,
     dto: UpdateSOWAcceptanceCriteriaDto,
   ) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteSOWAcceptanceCriteria(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      is_deleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }

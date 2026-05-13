@@ -17,7 +17,7 @@ export class SOWAcceptanceCriteria {
   })
   detail!: string;
 
-  @Prop({ default: null })
+  @Prop({ default: -1 })
   list_index!: number;
 
   @Prop({
