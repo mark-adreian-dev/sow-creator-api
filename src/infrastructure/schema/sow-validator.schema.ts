@@ -16,6 +16,9 @@ export class SOWValidator {
   @Prop({ required: true })
   validator_id!: string;
 
+  @Prop({ required: true })
+  current_position!: string;
+
   @Prop({
     default: false,
   })

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -40,7 +41,7 @@ export class SOWObjectiveController {
     return this.service.update(id, updateSOWObjectiveDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWObjective(@Param('id') id: string) {
     return this.service.remove(id);
   }

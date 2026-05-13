@@ -28,12 +28,17 @@ export class SOWValidatorRepository {
   }
 
   async updateSOWValidator(id: string, dto: Partial<CreateSOWValidatorDto>) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteSOWValidator(id: string) {
-    return await this.mongodb.findByIdAndUpdate(id, {
-      is_deleted: true,
-    });
+    return await this.mongodb.findByIdAndUpdate(
+      id,
+      { is_deleted: true },
+      { new: true },
+    );
   }
 }
