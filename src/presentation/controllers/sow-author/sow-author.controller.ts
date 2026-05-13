@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -40,7 +41,7 @@ export class SOWAuthorController {
     return this.service.update(id, updateSOWAuthorDto);
   }
 
-  @Post(':id')
+  @Delete(':id')
   deleteSOWAuthor(@Param('id') id: string) {
     return this.service.remove(id);
   }

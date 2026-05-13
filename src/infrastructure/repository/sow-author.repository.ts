@@ -8,6 +8,7 @@ import {
   StatementOfWorkDocument,
 } from '../schema/statement-of-work.schema';
 import { Author, AuthorDocument } from '../schema/author.schema';
+import { UpdateSOWAuthorDto } from '../../domain/sow-authors/dto/update-sow-author.dto';
 
 @Injectable()
 export class SOWAuthorRepository {
@@ -47,8 +48,11 @@ export class SOWAuthorRepository {
     return await this.mongodb.create(dto);
   }
 
-  async updateSOWAuthor(id: string, dto: Partial<CreateSOWAuthorDto>) {
-    return await this.mongodb.findByIdAndUpdate(id, dto);
+  async updateSOWAuthor(id: string, dto: UpdateSOWAuthorDto) {
+    return await this.mongodb.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   async deleteSOWAuthor(id: string) {
