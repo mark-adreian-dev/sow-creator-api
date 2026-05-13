@@ -10,12 +10,7 @@ export type SOWFeatureDocument = SOWFeature & Document;
 })
 export class SOWFeature {
   @Prop({ required: true })
-  platform_id!: string;
-
-  @Prop({
-    default: 0,
-  })
-  feature_index!: number;
+  app_platform_id!: string;
 
   @Prop({
     default: null,
@@ -27,13 +22,19 @@ export class SOWFeature {
   })
   feature_objective!: string;
 
-  @Prop()
+  @Prop({
+    default: -1,
+  })
   list_index!: number;
 
-  @Prop()
+  @Prop({
+    default: 0,
+  })
   dev_story_points!: number;
 
-  @Prop()
+  @Prop({
+    default: 0,
+  })
   test_story_points!: number;
 
   @Prop({

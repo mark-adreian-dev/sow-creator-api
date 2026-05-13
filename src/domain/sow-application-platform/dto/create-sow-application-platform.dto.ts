@@ -22,11 +22,6 @@ export class CreateSOWApplicationPlatformDto {
   @IsString()
   description!: string;
 
-  @IsNotEmpty()
-  @Type(() => Number)
-  @IsInt()
-  list_index!: number;
-
   @IsOptional()
   @IsBoolean()
   is_deleted!: boolean;

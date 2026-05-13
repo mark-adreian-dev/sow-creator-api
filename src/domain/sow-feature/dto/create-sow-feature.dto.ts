@@ -12,12 +12,7 @@ export class CreateSOWFeatureDto {
   @IsNotEmpty()
   @IsString()
   @Length(24, 24)
-  platform_id!: string;
-
-  @IsNotEmpty()
-  @Type(() => Number)
-  @IsInt()
-  feature_index!: number;
+  app_platform_id!: string;
 
   @IsOptional()
   @IsString()
@@ -27,7 +22,7 @@ export class CreateSOWFeatureDto {
   @IsString()
   feature_objective!: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Type(() => Number)
   @IsInt()
   list_index!: number;
@@ -41,8 +36,4 @@ export class CreateSOWFeatureDto {
   @Type(() => Number)
   @IsInt()
   test_story_points!: number;
-
-  @IsOptional()
-  @IsBoolean()
-  is_deleted!: boolean;
 }
