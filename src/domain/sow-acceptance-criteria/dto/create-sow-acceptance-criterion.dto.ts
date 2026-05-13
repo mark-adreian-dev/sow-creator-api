@@ -17,13 +17,4 @@ export class CreateSOWAcceptanceCriteriaDto {
   @IsOptional()
   @IsString()
   detail!: string;
-
-  @IsNotEmpty()
-  @Type(() => Number)
-  @IsInt()
-  list_index!: number;
-
-  @IsOptional()
-  @IsBoolean()
-  is_deleted!: boolean;
 }

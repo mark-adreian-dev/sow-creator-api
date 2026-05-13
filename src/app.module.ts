@@ -19,6 +19,7 @@ import { SOWAcceptanceCriteriaModule } from './core/modules/sow-acceptance-crite
     //MongoDB configurations
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI as string),
 
