@@ -16,9 +16,9 @@ import { UpdateSOWObjectiveDto } from '../../../domain/sow-objective/dto/update-
 export class SOWObjectiveController {
   constructor(private readonly service: SOWObjectiveService) {}
 
-  @Get()
-  async getSOWObjectives() {
-    return await this.service.findAll();
+  @Get(':id/objectives')
+  async getSOWObjectives(@Param('id') id: string) {
+    return await this.service.findAll(id);
   }
 
   @Get(':id')

@@ -1,45 +1,46 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import {
-  SOWObjective,
-  SOWObjectiveDocument,
-} from '../schema/sow-objectives.schema';
-import { CreateSOWObjectiveDto } from '../../domain/sow-objective/dto/create-sow-objective.dto';
-import { UpdateSOWObjectiveDto } from '../../domain/sow-objective/dto/update-sow-objective.dto';
+
 import {
   StatementOfWork,
   StatementOfWorkDocument,
 } from '../schema/statement-of-work.schema';
 import { dot } from 'node:test/reporters';
+import {
+  SOWCountries,
+  SOWCountriesDocument,
+} from '../schema/sow-countries.schema';
+import { CreateSOWCountryDto } from '../../domain/sow-countries/dto/create-sow-country.dto';
+import { UpdateSOWCountryDto } from '../../domain/sow-countries/dto/update-sow-country.dto';
 
 @Injectable()
-export class SOWObjectiveRepository {
+export class SOWCountriesRepository {
   constructor(
-    @InjectModel(SOWObjective.name)
-    private readonly mongodb: Model<SOWObjectiveDocument>,
+    @InjectModel(SOWCountries.name)
+    private readonly mongodb: Model<SOWCountriesDocument>,
 
     @InjectModel(StatementOfWork.name)
     private readonly statementOfWorkSchema: Model<StatementOfWorkDocument>,
   ) {}
 
-  async findSOWObjectives(id: string) {
+  async findSOWCountriess(id: string) {
     const objectives = await this.mongodb.find({
       statement_of_work_id: id,
     });
-    const activeSOWObjectives = objectives.filter(
-      (objective: SOWObjective) => !objective.is_deleted,
+    const activeSOWCountriess = objectives.filter(
+      (objective: SOWCountries) => !objective.is_deleted,
     );
-    return activeSOWObjectives;
+    return activeSOWCountriess;
   }
 
-  async findSOWObjective(id: string) {
-    const author: SOWObjective | null = await this.mongodb.findById(id);
+  async findSOWCountries(id: string) {
+    const author: SOWCountries | null = await this.mongodb.findById(id);
     if (author) return author.is_deleted ? null : author;
     return null;
   }
 
-  async createSOWObjective(dto: CreateSOWObjectiveDto) {
+  async createSOWCountries(dto: CreateSOWCountryDto) {
     const statementOfWorkExists = await this.statementOfWorkSchema.exists({
       _id: dto.statement_of_work_id,
     });
@@ -50,11 +51,11 @@ export class SOWObjectiveRepository {
     return await this.mongodb.create(dto);
   }
 
-  async updateSOWObjective(id: string, dto: UpdateSOWObjectiveDto) {
+  async updateSOWCountries(id: string, dto: UpdateSOWCountryDto) {
     return await this.mongodb.findByIdAndUpdate(id, dto);
   }
 
-  async deleteSOWObjective(id: string) {
+  async deleteSOWCountries(id: string) {
     return await this.mongodb.findByIdAndUpdate(id, {
       is_deleted: true,
     });

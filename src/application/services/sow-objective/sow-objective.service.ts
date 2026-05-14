@@ -14,9 +14,9 @@ export class SOWObjectiveService {
     return createdSOWObjective;
   }
 
-  async findAll() {
-    const authorsList = await this.repository.findSOWObjectives();
-    return authorsList;
+  async findAll(id: string) {
+    const objectivesList = await this.repository.findSOWObjectives(id);
+    return objectivesList;
   }
 
   async findOne(id: string) {

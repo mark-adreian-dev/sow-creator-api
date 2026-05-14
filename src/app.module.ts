@@ -13,6 +13,7 @@ import { SOWObjectiveModule } from './core/modules/sow-objective.module';
 import { SOWApplicationPlatformModule } from './core/modules/sow-application-platform.module';
 import { SOWFeatureModule } from './core/modules/sow-feature.module';
 import { SOWAcceptanceCriteriaModule } from './core/modules/sow-acceptance-criteria.module';
+import { SOWCountriesModule } from './core/modules/sow-countries.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { SOWAcceptanceCriteriaModule } from './core/modules/sow-acceptance-crite
     SOWApplicationPlatformModule,
     SOWFeatureModule,
     SOWAcceptanceCriteriaModule,
+    SOWCountriesModule,
   ],
 })
 export class AppModule {}
